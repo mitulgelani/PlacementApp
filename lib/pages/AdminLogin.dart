@@ -1,47 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:placementapp/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:placementapp/pages/Signupscreen.dart';
 import 'package:placementapp/pages/Forgotpassword.dart';
-import 'package:placementapp/pages/AdminLogin.dart';
+import 'package:placementapp/pages/Loginscreen.dart';
+import 'package:placementapp/main.dart';
+import 'package:placementapp/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:placementapp/screens/Adminhome.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:placementapp/controllers/authentications.dart';
+import 'package:placementapp/screens/Adminhome.dart';
 
-
-class Loginscreen extends StatefulWidget {
+class AdminLogin extends StatefulWidget {
   @override
-  _LoginscreenState createState() => _LoginscreenState();
+  _AdminLoginState createState() => _AdminLoginState();
 }
 
-class _LoginscreenState extends State<Loginscreen> {
+class _AdminLoginState extends State<AdminLogin> {
   String email;
   String password;
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
-
-   void login() {
-    if (formkey.currentState.validate()) {
-      formkey.currentState.save();
-      signIn(email.trim(), password, context).then((value) {
-        if (value != null) {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(uid: value.uid),
-              ));
-        }
-      });
-    }
-  }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.blue[500],
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.blue[300],
           title: Text(
             "Placement App",
             style: GoogleFonts.pattaya(fontSize:30),
@@ -53,11 +38,10 @@ class _LoginscreenState extends State<Loginscreen> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-          
-              Padding(
+             Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
-                  "Login Here!",
+                  "Admin Login!",
                   style: TextStyle(
                     fontSize: 30.0,
                     color: Colors.white,
@@ -131,7 +115,7 @@ class _LoginscreenState extends State<Loginscreen> {
                           width: 100,
                           child: RaisedButton(
                             color: Colors.blue,
-                            onPressed: login,
+                            onPressed: () {}, //login,
                             child: Text(
                               "Login",
                               style: TextStyle(
@@ -141,19 +125,6 @@ class _LoginscreenState extends State<Loginscreen> {
                             ),
                           ),
                         ),
-                      ),
-                      GestureDetector(
-                        child: Container(
-                            alignment: Alignment.centerRight,
-                            child: Text("or Login as Admin",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15.0))),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AdminLogin()));
-                        },
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 20.0),
