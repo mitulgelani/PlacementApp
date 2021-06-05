@@ -9,7 +9,7 @@ import 'package:placementapp/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:placementapp/controllers/authentications.dart';
-import 'package:placementapp/screens/Adminhome.dart';
+import 'package:placementapp/screens/admin/Adminhome.dart';
 
 class AdminLogin extends StatefulWidget {
   @override

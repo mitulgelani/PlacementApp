@@ -6,7 +6,7 @@ import 'package:placementapp/pages/Signupscreen.dart';
 import 'package:placementapp/pages/Forgotpassword.dart';
 import 'package:placementapp/pages/AdminLogin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:placementapp/screens/Adminhome.dart';
+import 'package:placementapp/screens/admin/Adminhome.dart';
 import 'package:placementapp/controllers/authentications.dart';
 
 

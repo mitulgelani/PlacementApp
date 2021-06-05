@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:placementapp/pages/Loginscreen.dart';
-import 'package:placementapp/screens/Adminhome.dart';
+import 'package:placementapp/screens/admin/Adminhome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 
 const String boxname = '';
 Future<void> main() async {
@@ -29,10 +30,31 @@ class MyApp extends StatelessWidget {
       ),
       home: HomePage(),
     );
+    /*AdaptiveTheme(
+      light: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.red,
+        accentColor: Colors.amber,
+      ),
+      dark: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.red,
+        accentColor: Colors.amber,
+      ),
+      initial: AdaptiveThemeMode.dark,
+      builder: (theme, darkTheme) => MaterialApp(
+        title: 'Placement App',
+        theme: theme,
+        darkTheme: darkTheme,
+        home: HomePage(),
+      ),
+    );*/
   }
 }
 
 class HomePage extends StatefulWidget {
+
+  
   final String uid;
   const HomePage({Key key, this.uid}) : super(key: key);
   @override

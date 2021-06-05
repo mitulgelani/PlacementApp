@@ -4,8 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 import 'package:placementapp/pages/Loginscreen.dart';
+import 'package:placementapp/screens/admin/Adminprofile.dart';
 import 'package:placementapp/main.dart';
-//import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
 class Adminhome extends StatefulWidget {
   final FirebaseUser user;
@@ -16,34 +17,32 @@ class Adminhome extends StatefulWidget {
 }
 
 class _AdminhomeState extends State<Adminhome> {
-    String name, email;
+  final PageController _pageController = PageController();
+  int currentIndex = 0;
+  String name, email;
   _AdminhomeState(this.user);
   final db = Firestore.instance;
-  Future getdata() async {
-    final Future<DocumentSnapshot> document =
-        Firestore.instance.collection('users').document(user.uid).get();
-
-    await document.then<dynamic>((DocumentSnapshot snapshot) async {
-      setState(() {
-        name = snapshot.data['name'];
-        email = snapshot.data['email'];
-      });
+  Future<DocumentSnapshot> document;
+  Future<void> getdata() async {
+    document = Firestore.instance.collection('users').document(user.uid).get();
+    document.then<dynamic>((DocumentSnapshot snapshot) async {
+      if (mounted) {
+        setState(() {
+          name = snapshot.data['name'];
+          email = user.email;
+        });
+      }
     });
+    return;
   }
 
- @override
+  @override
   void initState() {
     super.initState();
     getdata();
-    setState(() {
-      db.collection('users').document(user.uid).updateData({'name': name});
-    });
   }
+
   final FirebaseUser user;
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -127,11 +126,52 @@ class _AdminhomeState extends State<Adminhome> {
           ),
         ],
       )),
-      body: Container(
-        child: Column(
-          children: <Widget>[],
-        ),
+      body: PageView(
+        controller: _pageController,
+        children: <Widget>[
+          //Adminhome(),
+          //Status(),
+          Adminprofile(),
+        ],
+        onPageChanged: (pageIndex) {
+          setState(() {
+            currentIndex = pageIndex;
+          });
+        },
+      ),
+      bottomNavigationBar: BottomNavyBar(
+        animationDuration: Duration(milliseconds: 200),
+        backgroundColor: Colors.white,
+        curve: Curves.easeInCubic,
+        selectedIndex: currentIndex,
+        onItemSelected: (index) {
+          setState(() {
+            currentIndex = index;
+            _pageController.jumpToPage(index);
+          });
+        },
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            icon: Icon(Icons.add_box),
+            title: Text("add"),
+            activeColor: Colors.blueAccent,
+            inactiveColor: Colors.black,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.timer),
+            title: Text("status"),
+            activeColor: Colors.blueAccent,
+            inactiveColor: Colors.black,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.account_box),
+            title: Text("profile"),
+            activeColor: Colors.blueAccent,
+            inactiveColor: Colors.black,
+          ),
+        ],
       ),
     );
+    
   }
 }

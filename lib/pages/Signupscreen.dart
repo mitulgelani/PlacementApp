@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:placementapp/controllers/authentications.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:placementapp/screens/Adminhome.dart';
+import 'package:placementapp/screens/admin/Adminhome.dart';
 
 //import 'package:placementapp/main.dart';
 
