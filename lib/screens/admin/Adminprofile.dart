@@ -264,7 +264,6 @@ Future getImage1() async {
                                               color: Colors.orange[300],
                                             ),
                                           ),
-                                          enabled: !_status,
                                           autofocus: !_status,
                                           validator: MultiValidator([
                                             RequiredValidator(
@@ -317,7 +316,6 @@ Future getImage1() async {
                                               color: Colors.orange[300],
                                             ),
                                           ),
-                                          enabled: !_status,
                                           autofocus: !_status,
                                           validator: MultiValidator([
                                             RequiredValidator(
@@ -369,7 +367,6 @@ Future getImage1() async {
                                               color: Colors.orange[300],
                                             ),
                                           ),
-                                          enabled: false,
                                           autofocus: !_status,
                                           validator: MultiValidator([
                                             RequiredValidator(
@@ -423,7 +420,6 @@ Future getImage1() async {
                                             color: Colors.orange[300],
                                           ),
                                         ),
-                                        enabled: !_status,
                                         autofocus: !_status,
                                         validator: MultiValidator([
                                           RequiredValidator(
@@ -482,7 +478,6 @@ Future getImage1() async {
                                             color: Colors.orange[300],
                                           ),
                                         ),
-                                        enabled: !_status,
                                         autofocus: !_status,
                                         validator: MultiValidator([
                                           RequiredValidator(
@@ -537,7 +532,6 @@ Future getImage1() async {
                                             color: Colors.orange[300],
                                           ),
                                         ),
-                                        enabled: !_status,
                                         autofocus: !_status,
                                         validator: MultiValidator([
                                           RequiredValidator(
@@ -593,7 +587,6 @@ Future getImage1() async {
                                               color: Colors.orange[300],
                                             ),
                                           ),
-                                          enabled: !_status,
                                           autofocus: !_status,
                                           validator: MultiValidator([
                                             RequiredValidator(
