@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'package:placementapp/pages/Loginscreen.dart';
 import 'package:placementapp/main.dart';
@@ -11,6 +14,7 @@ import 'Adminhome.dart';
 
 class Adminprofile extends StatefulWidget {
   final FirebaseUser user;
+ 
 
   const Adminprofile({Key key, this.user}) : super(key: key);
   @override
@@ -19,6 +23,7 @@ class Adminprofile extends StatefulWidget {
 
 class _AdminprofileState extends State<Adminprofile> {
   final FirebaseUser user;
+  File _image1;
   String uid;
   _AdminprofileState(this.user);
   bool _status = true;
@@ -26,14 +31,24 @@ class _AdminprofileState extends State<Adminprofile> {
 /*Map<String, dynamic> data2;
 Future<DocumentSnapshot> document;*/
 
+
+Future getImage1() async {
+    final image = await ImagePicker.pickImage(
+        source: ImageSource.camera, imageQuality: 60);
+    setState(() {
+      _image1 = image;
+    });
+  }
+
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final FocusNode myFocusNode = FocusNode();
   TextEditingController fnc = TextEditingController();
   TextEditingController lnc = TextEditingController();
   TextEditingController ec = TextEditingController();
   TextEditingController mc = TextEditingController();
-  TextEditingController wc = TextEditingController();
+  TextEditingController bc = TextEditingController();
   TextEditingController ac = TextEditingController();
+  TextEditingController dc = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,33 +64,110 @@ Future<DocumentSnapshot> document;*/
           }
         },
         child: Scaffold(
-          /*appBar: AppBar(
-            title: Text("Profile",
-                style: TextStyle(
-                  color: Colors.white,
-                )),
-            centerTitle: true,
-            backgroundColor: Colors.blue,
-            automaticallyImplyLeading: false,
-            leading: Tooltip(
-              message: 'log out',
-              textStyle: TextStyle(fontSize: 15, color: Colors.white),
-              child: new IconButton(
-                icon: new Icon(Icons.exit_to_app, color: Colors.white),
-                onPressed: () {
-                  signOutUser();
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
-                      ));
-                },
-              ),
-            ),
-          ),*/
+        appBar: AppBar(
+        backgroundColor: Colors.blue[300],
+        title: Text(
+          "Profile",
+          style: GoogleFonts.pattaya(fontSize: 30),
+        ),
+        centerTitle: true,
+        elevation: 10,
+      ),
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                 Container(
+                child: _image1 == null
+                  ? Padding(
+                      padding: EdgeInsets.only(top: 20.0),
+                      child: new Stack(
+                        fit: StackFit.loose,
+                        children: <Widget>[
+                          new Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              new Container(
+                                  width: 140.0,
+                                  height: 140.0,
+                                  decoration: new BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: new DecorationImage(
+                                      image: new ExactAssetImage(
+                                          'assets/profile.png'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )),
+                            ],
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(top: 90.0, right: 100.0),
+                              child: new Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  InkWell(
+                                    onTap: () {
+                                      getImage1();
+                                    },
+                                    child: new CircleAvatar(
+                                      backgroundColor: Colors.red,
+                                      radius: 25.0,
+                                      child: new Icon(
+                                        Icons.camera_alt,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )),
+                        ],
+                      ),
+                    )
+                  :
+                  Padding(
+                      padding: EdgeInsets.only(top: 20.0),
+                      child: new Stack(
+                        fit: StackFit.loose,
+                        children: <Widget>[
+                          new Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              new Container(
+                                  width: 140.0,
+                                  height: 140.0,
+                                  decoration: new BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: new DecorationImage(
+                                      image: new ExactAssetImage('_image1.png'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )),
+                            ],
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(top: 90.0, right: 100.0),
+                              child: new Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  InkWell(
+                                    onTap: () {
+                                      getImage1();
+                                    },
+                                    child: new CircleAvatar(
+                                      backgroundColor: Colors.red,
+                                      radius: 25.0,
+                                      child: new Icon(
+                                        Icons.camera_alt,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              )),
+                        ],
+                      ),
+                    )),      
                 Padding(
                     padding:
                         EdgeInsets.only(left: 20.0, right: 25.0, top: 10.0),
@@ -88,7 +180,7 @@ Future<DocumentSnapshot> document;*/
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             new Text(
-                              'Parsonal Information',
+                              'Personal Information',
                               style: TextStyle(
                                   fontSize: 27.0,
                                   color: Colors.blue,
@@ -109,7 +201,7 @@ Future<DocumentSnapshot> document;*/
                   padding: const EdgeInsets.all(8.0),
                   child: Form(
                     key: formkey,
-                    autovalidate: true,
+                    //autovalidate: true,
                     child: new Container(
                       width: double.infinity,
                       decoration: new BoxDecoration(
@@ -167,7 +259,7 @@ Future<DocumentSnapshot> document;*/
                                           keyboardType: TextInputType.name,
                                           style: GoogleFonts.raleway(
                                             textStyle: TextStyle(
-                                              fontSize: 35,
+                                              fontSize: 20,
                                               fontStyle: FontStyle.italic,
                                               color: Colors.orange[300],
                                             ),
@@ -220,7 +312,7 @@ Future<DocumentSnapshot> document;*/
                                           keyboardType: TextInputType.name,
                                           style: GoogleFonts.raleway(
                                             textStyle: TextStyle(
-                                              fontSize: 35,
+                                              fontSize: 20,
                                               fontStyle: FontStyle.italic,
                                               color: Colors.orange[300],
                                             ),
@@ -272,7 +364,7 @@ Future<DocumentSnapshot> document;*/
                                           ),
                                           style: GoogleFonts.raleway(
                                             textStyle: TextStyle(
-                                              fontSize: 35,
+                                              fontSize: 20,
                                               fontStyle: FontStyle.italic,
                                               color: Colors.orange[300],
                                             ),
@@ -326,7 +418,7 @@ Future<DocumentSnapshot> document;*/
                                         keyboardType: TextInputType.phone,
                                         style: GoogleFonts.raleway(
                                           textStyle: TextStyle(
-                                            fontSize: 35,
+                                            fontSize: 20,
                                             fontStyle: FontStyle.italic,
                                             color: Colors.orange[300],
                                           ),
@@ -359,7 +451,7 @@ Future<DocumentSnapshot> document;*/
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
-                                          'Ward no.',
+                                          'Branch',
                                           style: TextStyle(
                                               fontSize: 25.0,
                                               color: Colors.blue[500],
@@ -378,14 +470,14 @@ Future<DocumentSnapshot> document;*/
                                   children: <Widget>[
                                     new Flexible(
                                       child: new TextFormField(
-                                        controller: wc,
+                                        controller: bc,
                                         decoration: const InputDecoration(
-                                          hintText: "Enter Your ward number",
+                                          hintText: "Enter Your Branch",
                                         ),
                                         keyboardType: TextInputType.number,
                                         style: GoogleFonts.raleway(
                                           textStyle: TextStyle(
-                                            fontSize: 35,
+                                            fontSize: 20,
                                             fontStyle: FontStyle.italic,
                                             color: Colors.orange[300],
                                           ),
@@ -402,6 +494,62 @@ Future<DocumentSnapshot> document;*/
                                   ],
                                 ),
                               ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: 20.0, right: 20.0, top: 10.0),
+                                child: new Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: <Widget>[
+                                    new Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        new Text(
+                                          'Designation',
+                                          style: TextStyle(
+                                              fontSize: 25.0,
+                                              color: Colors.blue[500],
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: 20.0, right: 20.0, top: 0.0),
+                                child: new Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: <Widget>[
+                                    new Flexible(
+                                      child: new TextFormField(
+                                        controller: dc,
+                                        decoration: const InputDecoration(
+                                          hintText: "Enter Your Designation",
+                                        ),
+                                        keyboardType: TextInputType.number,
+                                        style: GoogleFonts.raleway(
+                                          textStyle: TextStyle(
+                                            fontSize: 20,
+                                            fontStyle: FontStyle.italic,
+                                            color: Colors.orange[300],
+                                          ),
+                                        ),
+                                        enabled: !_status,
+                                        autofocus: !_status,
+                                        validator: MultiValidator([
+                                          RequiredValidator(
+                                              errorText:
+                                                  " This Field Is Required"),
+                                        ]),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
                               Padding(
                                   padding: EdgeInsets.only(
                                       left: 20.0, right: 20.0, top: 10.0),
@@ -440,7 +588,7 @@ Future<DocumentSnapshot> document;*/
                                           keyboardType: TextInputType.multiline,
                                           style: GoogleFonts.raleway(
                                             textStyle: TextStyle(
-                                              fontSize: 35,
+                                              fontSize: 20,
                                               fontStyle: FontStyle.italic,
                                               color: Colors.orange[300],
                                             ),
@@ -456,6 +604,75 @@ Future<DocumentSnapshot> document;*/
                                       ),
                                     ],
                                   )),
+                                  Row(
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 45.0,
+                                      top: 35.0,
+                                      bottom: 10.0),
+                                  child: new Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                      new Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          RaisedButton(
+                                            onPressed: () {},
+                                            color: Colors.blue,
+                                            splashColor: Colors.amber,
+                                            child: Text(
+                                              "Update",
+                                              style: TextStyle(
+                                                fontSize: 25.0,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 75.0,
+                                      right: 25.0,
+                                      top: 35.0,
+                                      bottom: 10.0),
+                                  child: new Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                      new Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          RaisedButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Loginscreen()));
+                                            },
+                                            color: Colors.blue,
+                                            splashColor: Colors.amber,
+                                            child: Text(
+                                              "Logout",
+                                              style: TextStyle(
+                                                fontSize: 25.0,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )),
+                            ],
+                          ),
                               //!_status ? _getActionButtons() : new Container(),
                             ],
                           ),
@@ -464,11 +681,11 @@ Future<DocumentSnapshot> document;*/
                     ),
                   ),
                 )
-              ],
+            ],
+            ),    
             ),
           ),
         ),
-      ),
     );
   }
 }

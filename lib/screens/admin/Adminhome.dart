@@ -157,12 +157,12 @@ class _AdminhomeState extends State<Adminhome> {
             activeColor: Colors.blueAccent,
             inactiveColor: Colors.black,
           ),
-          BottomNavyBarItem(
+          /*BottomNavyBarItem(
             icon: Icon(Icons.timer),
             title: Text("status"),
             activeColor: Colors.blueAccent,
             inactiveColor: Colors.black,
-          ),
+          ),*/
           BottomNavyBarItem(
             icon: Icon(Icons.account_box),
             title: Text("profile"),
