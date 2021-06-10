@@ -9,26 +9,22 @@ import 'dart:async';
 import 'package:placementapp/pages/Loginscreen.dart';
 import 'package:placementapp/main.dart';
 import 'package:placementapp/screens/student/Studenthome.dart';
-import 'Adminhome.dart';
-//import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
-class Adminprofile extends StatefulWidget {
+class Studentprofile extends StatefulWidget {
   final FirebaseUser user;
 
-  const Adminprofile({Key key, this.user}) : super(key: key);
+  const Studentprofile({Key key, this.user}) : super(key: key);
   @override
-  _AdminprofileState createState() => _AdminprofileState(user);
+  _StudentprofileState createState() => _StudentprofileState(user);
 }
 
-class _AdminprofileState extends State<Adminprofile> {
+class _StudentprofileState extends State<Studentprofile> {
   final FirebaseUser user;
+  _StudentprofileState(this.user);
   File _image1;
   String uid;
-  _AdminprofileState(this.user);
   bool _status = true;
   final db = Firestore.instance;
-/*Map<String, dynamic> data2;
-Future<DocumentSnapshot> document;*/
 
   Future ImageFC() async {
     final Image = await ImagePicker.pickImage(
@@ -71,10 +67,15 @@ Future<DocumentSnapshot> document;*/
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue[300],
+            backgroundColor: Colors.grey[900],
             title: Text(
               "Profile",
-              style: GoogleFonts.pattaya(fontSize: 30),
+              style: GoogleFonts.courgette(
+                textStyle: TextStyle(
+                  fontSize: 29,
+                  color: Colors.orange[300],
+                ),
+              ),
             ),
             centerTitle: true,
             elevation: 10,
@@ -196,7 +197,7 @@ Future<DocumentSnapshot> document;*/
                               'Personal Information',
                               style: TextStyle(
                                   fontSize: 27.0,
-                                  color: Colors.blue,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
                           ],
@@ -221,14 +222,14 @@ Future<DocumentSnapshot> document;*/
                         //color: Colors.blue[100],
                         border: Border.all(
                           width: 0.5,
-                          color: Colors.blue,
+                          color: Colors.white,
                         ),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Material(
                         elevation: 20,
                         borderRadius: BorderRadius.circular(10),
-                        shadowColor: Colors.blue,
+                        shadowColor: Colors.orange[500],
                         child: Padding(
                           padding: EdgeInsets.only(bottom: 10.0),
                           child: new Column(
@@ -247,10 +248,10 @@ Future<DocumentSnapshot> document;*/
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            'Name',
+                                            'First Name',
                                             style: TextStyle(
                                                 fontSize: 25.0,
-                                                color: Colors.blue,
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -267,7 +268,59 @@ Future<DocumentSnapshot> document;*/
                                         child: new TextFormField(
                                           controller: fnc,
                                           decoration: const InputDecoration(
-                                            hintText: "Enter Your Name",
+                                            hintText: "Enter Your First Name",
+                                          ),
+                                          keyboardType: TextInputType.name,
+                                          style: GoogleFonts.raleway(
+                                            textStyle: TextStyle(
+                                              fontSize: 20,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.orange[300],
+                                            ),
+                                          ),
+                                          autofocus: !_status,
+                                          validator: MultiValidator([
+                                            RequiredValidator(
+                                                errorText:
+                                                    " This Field Is Required"),
+                                          ]),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 20.0, right: 20.0, top: 10.0),
+                                  child: new Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                      new Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          new Text(
+                                            'Last Name',
+                                            style: TextStyle(
+                                                fontSize: 25.0,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  )),
+                              Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 20.0, right: 20.0, top: 0.0),
+                                  child: new Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: <Widget>[
+                                      new Flexible(
+                                        child: new TextFormField(
+                                          controller: lnc,
+                                          decoration: const InputDecoration(
+                                            hintText: "Enter Your Last Name",
                                           ),
                                           keyboardType: TextInputType.name,
                                           style: GoogleFonts.raleway(
@@ -302,7 +355,7 @@ Future<DocumentSnapshot> document;*/
                                             'Email ID',
                                             style: TextStyle(
                                                 fontSize: 25.0,
-                                                color: Colors.blue[500],
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -353,7 +406,7 @@ Future<DocumentSnapshot> document;*/
                                           'Mobile Number',
                                           style: TextStyle(
                                               fontSize: 25.0,
-                                              color: Colors.blue[500],
+                                              color: Colors.white,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],
@@ -411,7 +464,7 @@ Future<DocumentSnapshot> document;*/
                                           'Branch',
                                           style: TextStyle(
                                               fontSize: 25.0,
-                                              color: Colors.blue[500],
+                                              color: Colors.white,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],
@@ -465,7 +518,7 @@ Future<DocumentSnapshot> document;*/
                                           'Designation',
                                           style: TextStyle(
                                               fontSize: 25.0,
-                                              color: Colors.blue[500],
+                                              color: Colors.white,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],
@@ -520,7 +573,7 @@ Future<DocumentSnapshot> document;*/
                                             'Address',
                                             style: TextStyle(
                                                 fontSize: 25.0,
-                                                color: Colors.blue[500],
+                                                color: Colors.white,
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ],
@@ -572,20 +625,14 @@ Future<DocumentSnapshot> document;*/
                                             mainAxisSize: MainAxisSize.min,
                                             children: <Widget>[
                                               RaisedButton(
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              Studenthome()));
-                                                },
-                                                color: Colors.blue,
+                                                onPressed: () {},
+                                                color: Colors.grey[900],
                                                 splashColor: Colors.amber,
                                                 child: Text(
                                                   "Update",
                                                   style: TextStyle(
                                                     fontSize: 25.0,
-                                                    color: Colors.white,
+                                                    color: Colors.orange[200],
                                                   ),
                                                 ),
                                               ),
@@ -615,13 +662,13 @@ Future<DocumentSnapshot> document;*/
                                                           builder: (context) =>
                                                               Loginscreen()));
                                                 },
-                                                color: Colors.blue,
+                                                color: Colors.grey[900],
                                                 splashColor: Colors.amber,
                                                 child: Text(
                                                   "Logout",
                                                   style: TextStyle(
                                                     fontSize: 25.0,
-                                                    color: Colors.white,
+                                                    color: Colors.orange[200],
                                                   ),
                                                 ),
                                               ),

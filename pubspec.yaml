@@ -38,7 +38,11 @@ dependencies:
   adaptive_theme: any
   bottom_navy_bar: ^5.5.0
   image_picker: ^0.6.7+21
-
+  carousel_slider: any
+  expansion_card: any
+  flutter_image_slideshow: any
+  connectivity: any
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

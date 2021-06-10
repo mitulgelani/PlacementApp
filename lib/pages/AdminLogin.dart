@@ -5,7 +5,6 @@ import 'package:placementapp/pages/Signupscreen.dart';
 import 'package:placementapp/pages/Forgotpassword.dart';
 import 'package:placementapp/pages/Loginscreen.dart';
 import 'package:placementapp/main.dart';
-import 'package:placementapp/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:placementapp/controllers/authentications.dart';
