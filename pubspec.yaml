@@ -42,6 +42,9 @@ dependencies:
   expansion_card: any
   flutter_image_slideshow: any
   connectivity: any
+  dependencies:
+  flutter_signin_button: any
+  flutter_gradients: any
   
 dev_dependencies:
   flutter_test:

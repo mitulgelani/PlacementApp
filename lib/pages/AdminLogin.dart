@@ -20,24 +20,39 @@ class _AdminLoginState extends State<AdminLogin> {
   String password;
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
+  void login() {
+    if (formkey.currentState.validate()) {
+      formkey.currentState.save();
+      signIn(email.trim(), password, context).then((value) {
+        if (value != null) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(uid: value.uid),
+              ));
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.blue[300],
-          title: Text(
-            "Placement App",
-            style: GoogleFonts.pattaya(fontSize:30),
-          ),
-          centerTitle: true,
-          elevation: 10,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.blue[300],
+        title: Text(
+          "Placement App",
+          style: GoogleFonts.pattaya(fontSize: 30),
         ),
+        centerTitle: true,
+        elevation: 10,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-             Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
                   "Admin Login!",
@@ -114,7 +129,7 @@ class _AdminLoginState extends State<AdminLogin> {
                           width: 100,
                           child: RaisedButton(
                             color: Colors.blue,
-                            onPressed: () {}, //login,
+                            onPressed: login,
                             child: Text(
                               "Login",
                               style: TextStyle(

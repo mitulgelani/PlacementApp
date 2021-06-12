@@ -2,13 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:placementapp/pages/About.dart';
 import 'dart:async';
 import 'package:placementapp/pages/Loginscreen.dart';
+import 'package:placementapp/screens/admin/Adminportal.dart';
+import 'package:placementapp/screens/admin/Adminpost.dart';
 import 'package:placementapp/screens/admin/Adminprofile.dart';
 import 'package:placementapp/main.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:placementapp/screens/student/Studenthome.dart';
-
 
 class Adminhome extends StatefulWidget {
   final FirebaseUser user;
@@ -87,6 +89,20 @@ class _AdminhomeState extends State<Adminhome> {
           ),
           ListTile(
             title: Text(
+              "Generate PDF",
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
+            ),
+            trailing: Icon(
+              Icons.analytics_outlined,
+              color: Colors.blueAccent,
+            ),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text(
               "About",
               style: TextStyle(
                 fontSize: 20.0,
@@ -97,7 +113,10 @@ class _AdminhomeState extends State<Adminhome> {
               Icons.info,
               color: Colors.blueAccent,
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => About()));
+            },
           ),
           ListTile(
               title: Text(
@@ -115,7 +134,7 @@ class _AdminhomeState extends State<Adminhome> {
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => Loginscreen()));
               }),
-              /* ListTile(
+          /* ListTile(
               title: Text(
                 "Student Section",
                 style: TextStyle(
@@ -147,8 +166,7 @@ class _AdminhomeState extends State<Adminhome> {
       body: PageView(
         controller: _pageController,
         children: <Widget>[
-          //Adminhome(),
-          //Status(),
+          AdminPortal(),
           Adminprofile(),
         ],
         onPageChanged: (pageIndex) {
@@ -190,6 +208,5 @@ class _AdminhomeState extends State<Adminhome> {
         ],
       ),
     );
-    
   }
 }

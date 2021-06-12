@@ -87,12 +87,12 @@ class _HomePageState extends State<HomePage> {
           Fluttertoast.showToast(
             msg: "Connected to Wifi",
             toastLength: Toast.LENGTH_SHORT,
-        );
-        } else if(resnow == ConnectivityResult.mobile) {
+          );
+        } else if (resnow == ConnectivityResult.mobile) {
           Fluttertoast.showToast(
             msg: "Connected to Mobile",
             toastLength: Toast.LENGTH_SHORT,
-        );
+          );
         }
       }
       oldres = resnow;
