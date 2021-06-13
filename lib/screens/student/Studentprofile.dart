@@ -51,6 +51,7 @@ class _StudentprofileState extends State<Studentprofile> {
   TextEditingController bc = TextEditingController();
   TextEditingController ac = TextEditingController();
   TextEditingController dc = TextEditingController();
+  TextEditingController exc = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -515,7 +516,7 @@ class _StudentprofileState extends State<Studentprofile> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         new Text(
-                                          'Designation',
+                                          'Student College ID',
                                           style: TextStyle(
                                               fontSize: 25.0,
                                               color: Colors.white,
@@ -536,7 +537,61 @@ class _StudentprofileState extends State<Studentprofile> {
                                       child: new TextFormField(
                                         controller: dc,
                                         decoration: const InputDecoration(
-                                          hintText: "Enter Your Designation",
+                                          hintText: "Enter Your Id",
+                                        ),
+                                        keyboardType: TextInputType.number,
+                                        style: GoogleFonts.raleway(
+                                          textStyle: TextStyle(
+                                            fontSize: 20,
+                                            fontStyle: FontStyle.italic,
+                                            color: Colors.orange[300],
+                                          ),
+                                        ),
+                                        autofocus: !_status,
+                                        validator: MultiValidator([
+                                          RequiredValidator(
+                                              errorText:
+                                                  " This Field Is Required"),
+                                        ]),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                               Padding(
+                                padding: EdgeInsets.only(
+                                    left: 20.0, right: 20.0, top: 10.0),
+                                child: new Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: <Widget>[
+                                    new Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        new Text(
+                                          'Expected Year of Graduation',
+                                          style: TextStyle(
+                                              fontSize: 25.0,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: 20.0, right: 20.0, top: 0.0),
+                                child: new Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: <Widget>[
+                                    new Flexible(
+                                      child: new TextFormField(
+                                        controller: exc,
+                                        decoration: const InputDecoration(
+                                          hintText: "Enter the year",
                                         ),
                                         keyboardType: TextInputType.number,
                                         style: GoogleFonts.raleway(
@@ -570,7 +625,7 @@ class _StudentprofileState extends State<Studentprofile> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           new Text(
-                                            'Address',
+                                            'Permanent Address',
                                             style: TextStyle(
                                                 fontSize: 25.0,
                                                 color: Colors.white,

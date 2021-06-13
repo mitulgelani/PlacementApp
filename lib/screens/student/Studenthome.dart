@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:placementapp/pages/About.dart';
 import 'dart:async';
 import 'package:placementapp/pages/Loginscreen.dart';
 import 'package:placementapp/screens/student/Studentprofile.dart';
@@ -96,7 +97,12 @@ class _StudenthomeState extends State<Studenthome> {
               Icons.info,
               color: Colors.blueAccent,
             ),
-            onTap: () {},
+            onTap: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => About()),
+              );
+            },
           ),
           ListTile(
               title: Text(
