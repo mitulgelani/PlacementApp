@@ -5,29 +5,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:placementapp/pages/About.dart';
 import 'dart:async';
 import 'package:placementapp/pages/Loginscreen.dart';
-import 'package:placementapp/screens/admin/Adminportal.dart';
-import 'package:placementapp/screens/admin/Adminpost.dart';
-import 'package:placementapp/screens/admin/Adminprofile.dart';
+import 'package:placementapp/screens/student/Studentprofile.dart';
 import 'package:placementapp/main.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:placementapp/screens/student/Studenthome.dart';
+import 'package:placementapp/screens/student/Studentportal.dart';
+import 'package:placementapp/screens/student/Studentselect.dart';
 
-class Adminhome extends StatefulWidget {
+class Studenthome extends StatefulWidget {
   final FirebaseUser user;
 
-  const Adminhome({Key key, this.user}) : super(key: key);
+  const Studenthome({Key key, this.user}) : super(key: key);
   @override
-  _AdminhomeState createState() => _AdminhomeState(user);
+  _StudenthomeState createState() => _StudenthomeState();
 }
 
-class _AdminhomeState extends State<Adminhome> {
+class _StudenthomeState extends State<Studenthome> {
+
   final PageController _pageController = PageController();
-  int currentIndex = 0;
   String name, email;
-  _AdminhomeState(this.user);
+  int currentindex = 0;
+ /* _StudenthomeState(this.user);
   final db = Firestore.instance;
   Future<DocumentSnapshot> document;
-
   Future<void> getdata() async {
     document = Firestore.instance.collection('users').document(user.uid).get();
     document.then<dynamic>((DocumentSnapshot snapshot) async {
@@ -39,25 +38,23 @@ class _AdminhomeState extends State<Adminhome> {
       }
     });
     return;
-  }
+  }*/
 
-  @override
-  void initState() {
-    super.initState();
-    getdata();
-  }
-
-  final FirebaseUser user;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         //automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue[300],
+        backgroundColor: Colors.grey[900],
         title: Text(
-          "Placement App-Admin",
-          style: GoogleFonts.pattaya(fontSize: 30),
+          "Placement App-Student",
+          style: GoogleFonts.courgette(                          //pacifico       
+            textStyle: TextStyle(
+                fontSize: 29,
+                color: Colors.orange[300],
+              ),
+            ),       
         ),
         centerTitle: true,
         elevation: 10,
@@ -90,20 +87,6 @@ class _AdminhomeState extends State<Adminhome> {
           ),
           ListTile(
             title: Text(
-              "Generate PDF",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.white,
-              ),
-            ),
-            trailing: Icon(
-              Icons.analytics_outlined,
-              color: Colors.blueAccent,
-            ),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text(
               "About",
               style: TextStyle(
                 fontSize: 20.0,
@@ -115,8 +98,10 @@ class _AdminhomeState extends State<Adminhome> {
               color: Colors.blueAccent,
             ),
             onTap: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => About()));
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => About()),
+              );
             },
           ),
           ListTile(
@@ -135,22 +120,6 @@ class _AdminhomeState extends State<Adminhome> {
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => Loginscreen()));
               }),
-          /* ListTile(
-              title: Text(
-                "Student Section",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white,
-                ),
-              ),
-              trailing: Icon(
-                Icons.logout,
-                color: Colors.blueAccent,
-              ),
-              onTap: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => Studenthome()));
-              }),*/
           InkWell(
             borderRadius: BorderRadius.circular(500),
             onTap: () {
@@ -164,50 +133,64 @@ class _AdminhomeState extends State<Adminhome> {
           ),
         ],
       )),
-      body: PageView(
-        controller: _pageController,
-        children: <Widget>[
-          AdminPortal(),
-          Adminprofile(),
-        ],
-        onPageChanged: (pageIndex) {
-          setState(() {
-            currentIndex = pageIndex;
-          });
-        },
-      ),
       bottomNavigationBar: BottomNavyBar(
-        animationDuration: Duration(milliseconds: 200),
-        backgroundColor: Colors.white,
-        curve: Curves.easeInCubic,
-        selectedIndex: currentIndex,
+        selectedIndex: currentindex,
+        backgroundColor: Colors.grey[900],
         onItemSelected: (index) {
           setState(() {
-            currentIndex = index;
+            currentindex = index;
             _pageController.jumpToPage(index);
           });
         },
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(Icons.add_box),
-            title: Text("add"),
-            activeColor: Colors.blueAccent,
-            inactiveColor: Colors.black,
+            icon: Icon(Icons.home),
+            title: Text(
+              'Home',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.orange[300]),
+            ),
+            activeColor: Colors.orange[300],
+            inactiveColor: Colors.white,
           ),
-          /*BottomNavyBarItem(
-            icon: Icon(Icons.timer),
-            title: Text("status"),
-            activeColor: Colors.blueAccent,
-            inactiveColor: Colors.black,
-          ),*/
           BottomNavyBarItem(
-            icon: Icon(Icons.account_box),
-            title: Text("profile"),
-            activeColor: Colors.blueAccent,
-            inactiveColor: Colors.black,
+            icon: Icon(Icons.assistant_photo),
+            title: Text(
+              'Selected',
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+            activeColor: Colors.orange[300],
+            inactiveColor: Colors.white,
+          ),
+         BottomNavyBarItem(
+            icon: Icon(Icons.account_circle_rounded),
+            title: Text(
+              'Profile',
+              style: TextStyle(fontSize: 20),
+            ),
+            activeColor: Colors.orange[300],
+            inactiveColor: Colors.white,
           ),
         ],
       ),
-    );
+      body: PageView(
+        //allowImplicitScrolling: true,
+        controller: _pageController,
+        children: <Widget>[
+          Studentportal(),
+          Studentselect(),
+          Studentprofile(),
+        ],
+        onPageChanged: (pageIndex) {
+          setState(() {
+            currentindex = pageIndex;
+          });
+        },
+      )
+     );
   }
 }
