@@ -23,6 +23,14 @@ class Studentportal extends StatefulWidget {
 }
 
 class _StudentportalState extends State<Studentportal> {
+  List<DocumentSnapshot> doc;
+  Future getdata() async {
+    final QuerySnapshot result =
+        await Firestore.instance.collection('users').getDocuments();
+    doc = result.documents;
+    return doc;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +48,13 @@ class _StudentportalState extends State<Studentportal> {
         centerTitle: true,
         elevation: 10,
       ),
-      body: SingleChildScrollView(
+     /*  body: FutureBuilder<dynamic>(
+        future: getdata(), // async work
+        builder: /* (BuildContext context, AsyncSnapshot<String> snapshot) {
+          return Text('shkjsh');
+        }, */
+      ), */
+      /* SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
@@ -61,7 +75,7 @@ class _StudentportalState extends State<Studentportal> {
                         indicatorColor: Colors.orange[300],
                         indicatorBackgroundColor: Colors.white,
                         children: [
-                          ClipRect(
+                          /*   ClipRect(
                             child: Image.asset(
                               'assets/tcs.png',
                               fit: BoxFit.fitHeight,
@@ -90,7 +104,7 @@ class _StudentportalState extends State<Studentportal> {
                               'assets/worley.png',
                               fit: BoxFit.fitHeight,
                             ),
-                          ),
+                          ), */
                         ],
                         autoPlayInterval: 3000,
                       ),
@@ -127,7 +141,8 @@ class _StudentportalState extends State<Studentportal> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         //ui of post
-                        ListTile(
+
+                        /* ListTile(
                           title: Container(
                             width: MediaQuery.of(context).size.width * 0.90,
                             height: MediaQuery.of(context).size.width * 0.50,
@@ -249,7 +264,7 @@ class _StudentportalState extends State<Studentportal> {
                               ),
                             ],
                           ),
-                        ),
+                        ), */
                       ],
                     ),
                   ],
@@ -258,7 +273,7 @@ class _StudentportalState extends State<Studentportal> {
             ],
           ),
         ),
-      ),
+      ), */
     );
   }
 }

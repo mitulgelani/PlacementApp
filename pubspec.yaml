@@ -38,6 +38,14 @@ dependencies:
   adaptive_theme: any
   bottom_navy_bar: ^5.5.0
   image_picker: ^0.6.7+21
+  connectivity: ^3.0.6
+  firebase_storage: any
+  expansion_card: ^0.1.0
+  flutter_image_slideshow: ^0.1.0
+  flutter_gradients: ^1.0.0+3
+  flutter_signin_button: ^2.0.0
+  flutter_search_bar: ^2.1.0
+  uuid: ^3.0.4
 
 dev_dependencies:
   flutter_test:

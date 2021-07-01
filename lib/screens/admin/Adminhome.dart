@@ -167,8 +167,8 @@ class _AdminhomeState extends State<Adminhome> {
       body: PageView(
         controller: _pageController,
         children: <Widget>[
-          AdminPortal(),
-          Adminprofile(),
+          AdminPortal(user:user),
+          Adminprofile(user:user),
         ],
         onPageChanged: (pageIndex) {
           setState(() {

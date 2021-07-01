@@ -129,6 +129,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         child: SizedBox(
                           height: 50,
                           width: 100,
+                          // ignore: deprecated_member_use
                           child: RaisedButton(
                             color: Colors.blue,
                             onPressed: login,
