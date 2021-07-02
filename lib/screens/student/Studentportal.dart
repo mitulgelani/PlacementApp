@@ -23,6 +23,7 @@ class Studentportal extends StatefulWidget {
 }
 
 class _StudentportalState extends State<Studentportal> {
+
   List<DocumentSnapshot> doc;
   Future getdata() async {
     final QuerySnapshot result =
@@ -48,6 +49,7 @@ class _StudentportalState extends State<Studentportal> {
         centerTitle: true,
         elevation: 10,
       ),
+
      /*  body: FutureBuilder<dynamic>(
         future: getdata(), // async work
         builder: /* (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -55,6 +57,7 @@ class _StudentportalState extends State<Studentportal> {
         }, */
       ), */
       /* SingleChildScrollView(
+
         child: Container(
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
@@ -75,6 +78,7 @@ class _StudentportalState extends State<Studentportal> {
                         indicatorColor: Colors.orange[300],
                         indicatorBackgroundColor: Colors.white,
                         children: [
+
                           /*   ClipRect(
                             child: Image.asset(
                               'assets/tcs.png',
@@ -105,6 +109,7 @@ class _StudentportalState extends State<Studentportal> {
                               fit: BoxFit.fitHeight,
                             ),
                           ), */
+
                         ],
                         autoPlayInterval: 3000,
                       ),
@@ -117,11 +122,13 @@ class _StudentportalState extends State<Studentportal> {
                 child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
+
                     gradient: FlutterGradients.leCocktail(), //flyingLemon(),
                   ),
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.90,
                     height: MediaQuery.of(context).size.width * 0.15,
+
                     child: Text(
                       "\t\t\t\t\t\t \t\tRecent Posts",
                       style: TextStyle(
@@ -139,6 +146,7 @@ class _StudentportalState extends State<Studentportal> {
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+
                       children: <Widget>[
                         //ui of post
 
@@ -267,13 +275,14 @@ class _StudentportalState extends State<Studentportal> {
                         ), */
                       ],
                     ),
+
                   ],
                 ),
               ),
             ],
           ),
         ),
-      ), */
+
     );
   }
 }

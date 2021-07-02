@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.6.0"
+  carousel_slider:
+    dependency: "direct main"
+    description:
+      name: carousel_slider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   characters:
     dependency: transitive
     description:
@@ -77,34 +84,43 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "1.15.0"
+
   connectivity:
     dependency: "direct main"
     description:
       name: connectivity
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "3.0.6"
+
   connectivity_for_web:
     dependency: transitive
     description:
       name: connectivity_for_web
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "0.4.0"
+
   connectivity_macos:
     dependency: transitive
     description:
       name: connectivity_macos
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "0.2.0"
+
   connectivity_platform_interface:
     dependency: transitive
     description:
       name: connectivity_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "2.0.0"
   crypto:
     dependency: transitive
@@ -113,13 +129,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+
   cupertino_icons:
     dependency: "direct main"
     description:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "1.0.3"
+
   expansion_card:
     dependency: "direct main"
     description:
@@ -222,7 +241,9 @@ packages:
       name: flutter_image_slideshow
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "0.1.0"
+
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -230,6 +251,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.11"
+
   flutter_search_bar:
     dependency: "direct main"
     description:
@@ -237,13 +259,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+
   flutter_signin_button:
     dependency: "direct main"
     description:
       name: flutter_signin_button
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "2.0.0"
+
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -267,7 +292,9 @@ packages:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "9.1.0"
+
   form_field_validator:
     dependency: "direct main"
     description:
@@ -561,5 +588,7 @@ packages:
     source: hosted
     version: "0.1.2"
 sdks:
+
   dart: ">=2.13.0 <3.0.0"
   flutter: ">=1.20.0"
+

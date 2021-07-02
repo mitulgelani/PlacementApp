@@ -1,10 +1,15 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
+  
+
 import 'package:flutter/material.dart';
 import 'package:placementapp/screens/admin/Adminpost.dart';
 
 class AdminPortal extends StatefulWidget {
+
   final FirebaseUser user;
   const AdminPortal({Key key, this.user}) : super(key: key);
 
@@ -27,13 +32,15 @@ class _AdminPortalState extends State<AdminPortal> {
 
   showAlertDialog(BuildContext context) {
     // set up the button
-    // set up the AlertDialog
+
+
+
     AlertDialog alert = AlertDialog(
       backgroundColor: Colors.amber,
       title: Text(""),
       content: Text("This is my message."),
       actions: [
-        // ignore: deprecated_member_use
+
         FlatButton(
           child: Text("OK"),
           onPressed: () {},
@@ -69,6 +76,7 @@ class _AdminPortalState extends State<AdminPortal> {
         bottomNavigationBar: new BottomAppBar(
           color: Colors.white,
         ),
+
         body: FutureBuilder(
           future: getdata(),
           builder: (context, snapshot) {
@@ -150,3 +158,4 @@ class _AdminPortalState extends State<AdminPortal> {
         ));
   }
 }
+

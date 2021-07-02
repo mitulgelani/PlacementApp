@@ -501,8 +501,10 @@ class _AdminPostState extends State<AdminPost> {
  */
 import 'dart:collection';
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -516,17 +518,22 @@ class AdminPost extends StatefulWidget {
 }
 
 class _AdminPostState extends State<AdminPost> {
+
   final db = Firestore.instance;
+
   int i;
   Map<String, String> bl = HashMap<String, String>();
   Map<String, String> sl = HashMap<String, String>();
   TextEditingController cn = TextEditingController();
+
   TextEditingController cd = TextEditingController();
   String sem, branch;
+
   TextEditingController packc = TextEditingController();
   TextEditingController rolec = TextEditingController();
   int tap = 0;
   File _image1;
+
   String url1;
 
   Future<String> uploadImage() async {
@@ -569,6 +576,7 @@ class _AdminPostState extends State<AdminPost> {
 
     db.collection('admin').add(data);
   }
+
 
   List<Map<String, double>> rolepackage = List<HashMap<String, double>>();
 
@@ -930,12 +938,14 @@ class _AdminPostState extends State<AdminPost> {
                     padding:
                         EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                     child: TextFormField(
+
                       controller: cn,
                       cursorColor: Colors.white,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                       ),
+
                       decoration: new InputDecoration(
                         labelText: "Enter Company Name",
                         fillColor: Colors.white,
@@ -960,12 +970,14 @@ class _AdminPostState extends State<AdminPost> {
                     padding:
                         EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                     child: TextFormField(
+
                       controller: cd,
                       cursorColor: Colors.white,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                       ),
+
                       decoration: new InputDecoration(
                         labelText: "Company Details",
                         fillColor: Colors.white,
@@ -1103,7 +1115,7 @@ class _AdminPostState extends State<AdminPost> {
                                                   }
                                                 },
                                               ),
-                                              // ignore: deprecated_member_use
+
                                               RaisedButton(
                                                   child: Text('SUBMIT'),
                                                   onPressed: () {
@@ -1136,10 +1148,12 @@ class _AdminPostState extends State<AdminPost> {
                         EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
                     child: TextFormField(
                       cursorColor: Colors.white,
+
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                       ),
+
                       decoration: new InputDecoration(
                         labelText: "Enter Criteria",
                         fillColor: Colors.white,
@@ -1160,6 +1174,7 @@ class _AdminPostState extends State<AdminPost> {
                     ),
                   ),
                   Padding(
+
                     padding:
                         EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
                     child: SizedBox(
@@ -1179,10 +1194,11 @@ class _AdminPostState extends State<AdminPost> {
                       ),
                     ),
                   )
+
                 ],
               ),
             ),
           ),
         ));
   }
-}
+

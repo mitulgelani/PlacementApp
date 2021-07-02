@@ -21,6 +21,7 @@ class Studenthome extends StatefulWidget {
 
 class _StudenthomeState extends State<Studenthome> {
 
+
   List<DocumentSnapshot> doc;
   Future getdata() async {
     final QuerySnapshot result =
@@ -33,6 +34,7 @@ class _StudenthomeState extends State<Studenthome> {
   String name, email;
   int currentindex = 0;
   /* _StudenthomeState(this.user);
+
   final db = Firestore.instance;
   Future<DocumentSnapshot> document;
   Future<void> getdata() async {
@@ -47,6 +49,7 @@ class _StudenthomeState extends State<Studenthome> {
     });
     return;
   }*/
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,12 +99,14 @@ class _StudenthomeState extends State<Studenthome> {
             ListTile(
               title: Text(
                 "About",
+
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.white,
                 ),
               ),
               trailing: Icon(
+
                 Icons.info,
                 color: Colors.blueAccent,
               ),
@@ -199,5 +204,6 @@ class _StudenthomeState extends State<Studenthome> {
             });
           },
         ));
+
   }
 }
